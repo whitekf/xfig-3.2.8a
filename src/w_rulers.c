@@ -1536,3 +1536,24 @@ void set_siderulermark(int y)
     }
     lasty = y;
 }
+
+
+//toggle units
+void toggle_in_cm(void)
+{
+	appres.INCHES = !appres.INCHES; // switch between inches and no inches (cm)
+	cur_gridunit = appres.INCHES; // switch between decimal and imperial units
+	
+	set_unit_indicator(False); // Make scale unit panel update to according units
+	
+	//Update units of every drawn object (taken from unit_panel_set())
+	if (!emptyfigure()) {
+		if (!appres.INCHES)
+			read_scale_compound(&objects,(2.54*PPCM)/((float)PPI),0);
+		else
+			read_scale_compound(&objects,((float)PPI)/(2.54*PPCM),0);
+	}
+	
+	redisplay_canvas(); // Draw everything with changed values
+	
+}
