@@ -57,6 +57,8 @@
 #include "e_scale.h"
 #include "e_tangent.h"
 #include "e_update.h"
+// added below
+#include "w_rulers.h"
 #include "u_list.h"
 #include "u_markers.h"
 #include "u_search.h"
@@ -284,6 +286,11 @@ mode_sw_info mode_switches[] = {
 		"Measure AREA of polygons, arcs and ellipses   (Ctrl-m)",
 		False, NULL, (Pixmap)0, (Pixmap)0},
 
+	//toggle units
+	{&unittoggle_ic, F_NULL, toggle_in_cm, M_ALL, I_NONE, 
+	 	"Toggle units between inches and centimeters",
+	 	False, NULL, (Pixmap)0, (Pixmap)0},
+	
 	/* This must be last for create_mode_panel() (in w_canvas.c) */
 	{ NULL, 0, NULL, 0, 0, "", False, NULL, 0, 0}
 
